@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:17
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: puppygram
+    ports:
+      - "5432:5432"
+  mongo:
+    image: mongo:6
+    container_name: mongo
+    ports:
+      - "27017:27017"
+  app:
+    build:
+      context: .
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/puppygram
+      SPRING_DATA_MONGODB_URI: mongodb://mongo:27017/puppygram
+    depends_on:
+      - postgres
+      - mongo
+    ports:
+      - "8080:8080"

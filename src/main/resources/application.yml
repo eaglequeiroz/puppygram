@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: puppygram
+  datasource:
+    url: jdbc:postgresql://localhost:5432/puppygram
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+        hibernate:
+            dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/puppygram
