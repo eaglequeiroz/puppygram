@@ -1,0 +1,277 @@
+{
+	"info": {
+		"_postman_id": "eede9db9-8b53-4ae3-87f7-3750aa09266b",
+		"name": "puppyGram",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2971587"
+	},
+	"item": [
+		{
+			"name": "userProfile",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{userPassword}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{userName}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/user/{{userId}}/profile",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"{{userId}}",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"rolesArray\", JSON.stringify([{id:1}]))"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{userName}}\",\r\n    \"password\": \"{{userPassword}}\",\r\n    \"email\": \"{{userEmail}}\",\r\n    \"roles\": {{rolesArray}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/user/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createPost",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{userPassword}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{userName}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": \"{{userId}}\",\r\n    \"content\": \"{{postContent}}\",\r\n    \"imageUrl\": \"{{postImage}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/post",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user feed",
+			"protocolProfileBehavior": {
+				"protocolVersion": "auto"
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{userPassword}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{userName}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/post/{{userId}}/feed",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"post",
+						"{{userId}}",
+						"feed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post detail",
+			"protocolProfileBehavior": {
+				"protocolVersion": "auto"
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{userPassword}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{userName}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/post/{{postId}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"post",
+						"{{postId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "like post",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{userPassword}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{userName}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/post/{{postId}}/like",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"post",
+						"{{postId}}",
+						"like"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{userName}}\",\r\n    \"password\": \"{{userPassword}}\",\r\n    \"email\": \"{{userEmail}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/user/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
